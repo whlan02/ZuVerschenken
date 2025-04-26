@@ -2,7 +2,7 @@
   <div class="map-container">
     <div id="map" ref="mapRef"></div>
     <div class="map-instructions">
-      <p>点击地图选择物品位置</p>
+      <p>Klicken Sie auf die Karte, um den Standort des Objekts auszuwählen</p>
     </div>
   </div>
 </template>
@@ -19,7 +19,6 @@ import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { Style, Icon, Text, Fill, Stroke } from 'ol/style';
-import Overlay from 'ol/Overlay';
 import {defaults as defaultControls, ScaleLine, ZoomSlider, FullScreen, Attribution} from 'ol/control';
 
 const emit = defineEmits(['map-click']);
@@ -28,11 +27,11 @@ let map = null;
 let vectorSource = null;
 let vectorLayer = null;
 
-// 德国柏林市中心的经纬度坐标
+// Koordinaten des Stadtzentrums von Berlin, Deutschland
 const berlinCoordinates = [13.404954, 52.520008];
 
 onMounted(() => {
-  // 创建矢量图层和数据源，用于显示标记
+  // Erstellen Sie eine Vektorschicht und Datenquelle, um Markierungen anzuzeigen
   vectorSource = new VectorSource();
   vectorLayer = new VectorLayer({
     source: vectorSource,
@@ -59,7 +58,7 @@ onMounted(() => {
     }
   });
 
-  // 创建OpenLayers地图
+  // Erstellen Sie die OpenLayers-Karte
   map = new Map({
     target: mapRef.value,
     layers: [
@@ -73,7 +72,7 @@ onMounted(() => {
       zoom: 13
     }),
     controls: defaultControls({
-      attribution: false, // 隐藏默认的归因控件
+      attribution: false, // Standard-Attributionssteuerung ausblenden
       zoom: true,
       rotate: false
     }).extend([
@@ -93,24 +92,24 @@ onMounted(() => {
     ])
   });
 
-  // 添加地图点击事件，用于获取点击位置
+  // Fügen Sie ein Klickereignis zur Karte hinzu, um die Klickposition zu erhalten
   map.on('click', function(evt) {
     const coordinate = evt.coordinate;
     const lonLat = toLonLat(coordinate);
-    console.log('点击位置坐标: ', lonLat);
+    console.log('Klickposition Koordinaten: ', lonLat);
     
-    // 发送坐标到父组件
+    // Senden Sie die Koordinaten an die übergeordnete Komponente
     emit('map-click', lonLat);
   });
 });
 
-// 添加物品标记
+// Fügen Sie eine Objektmarkierung hinzu
 const addItemMarker = (item) => {
   if (!map || !item.location) return;
   
   const coordinates = fromLonLat(item.location);
   
-  // 创建一个新特征（标记）
+  // Erstellen Sie ein neues Feature (Markierung)
   const feature = new Feature({
     geometry: new Point(coordinates),
     title: item.title,
@@ -118,11 +117,11 @@ const addItemMarker = (item) => {
     id: item.id
   });
   
-  // 将标记添加到矢量图层
+  // Fügen Sie die Markierung zur Vektorschicht hinzu
   vectorSource.addFeature(feature);
 };
 
-// 根据ID删除标记
+// Entfernen Sie die Markierung anhand der ID
 const removeMarker = (itemId) => {
   if (!vectorSource) return;
   
@@ -134,7 +133,7 @@ const removeMarker = (itemId) => {
   }
 };
 
-// 获取当前地图视图中心坐标
+// Holen Sie sich die aktuellen Koordinaten des Kartenansichtsmitte
 const getCurrentCenter = () => {
   if (!map) return null;
   
@@ -144,14 +143,14 @@ const getCurrentCenter = () => {
 };
 
 onUnmounted(() => {
-  // 组件卸载时清理地图对象
+  // Bereinigen Sie das Kartenobjekt beim Entladen der Komponente
   if (map) {
     map.setTarget(null);
     map = null;
   }
 });
 
-// 导出方法，供父组件调用
+// Exportieren Sie Methoden zur Verwendung durch die übergeordnete Komponente
 defineExpose({
   addItemMarker,
   removeMarker,
@@ -191,7 +190,7 @@ defineExpose({
   color: #333;
 }
 
-/* OpenLayers控件样式 */
+/* OpenLayers-Steuerelement-Stil */
 :deep(.ol-zoom) {
   top: 10px;
   left: 10px;

@@ -5,62 +5,62 @@ import ItemForm from './components/ItemForm.vue'
 
 const itemFormRef = ref(null);
 const mapViewRef = ref(null);
-const showForm = ref(false); // 控制表单显示
+const showForm = ref(false); // Steuerung der Formanzeige
 
-// 监听窗口大小变化
+// Fenstergrößenänderung überwachen
 onMounted(() => {
   window.addEventListener('resize', () => {
     windowWidth.value = window.innerWidth;
   });
 });
 
-// 判断是否为移动设备
+// Überprüfen, ob es sich um ein mobiles Gerät handelt
 const isMobile = computed(() => {
-  // 使用更准确的移动设备检测方法
+  // Eine genauere Methode zur Erkennung mobiler Geräte verwenden
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   return isTouchDevice && window.innerWidth <= 768;
 });
 
-// 在移动设备上切换地图和表单视图
+// Wechseln zwischen Karten- und Formularansicht auf mobilen Geräten
 const toggleMobileView = () => {
   showMap.value = !showMap.value;
 };
 
-// 存储所有添加的物品
+// Speichern aller hinzugefügten Gegenstände
 const items = ref([]);
 
-// 处理表单提交
+// Verarbeitung der Formularübermittlung
 const handleItemSubmit = (itemData) => {
   const newItem = {
-    id: Date.now(),  // 简单生成唯一ID
+    id: Date.now(),  // Einfach eine eindeutige ID generieren
     ...itemData
   };
   items.value.push(newItem);
-  console.log('物品已添加:', newItem);
+  console.log('Gegenstand hinzugefügt:', newItem);
   if (mapViewRef.value) {
     mapViewRef.value.addItemMarker(newItem);
   }
-  showForm.value = false; // 提交后隐藏表单
+  showForm.value = false; // Formular nach der Übermittlung ausblenden
 };
 
-// 处理地图点击，将坐标传递给表单并显示表单
+// Verarbeitung des Kartenklicks, um die Koordinaten an das Formular zu übergeben und das Formular anzuzeigen
 const handleMapClick = (coords) => {
   if (itemFormRef.value) {
     itemFormRef.value.setLocation(coords);
   }
-  showForm.value = true; // 点击地图显示表单
+  showForm.value = true; // Formular beim Klicken auf die Karte anzeigen
 };
 
-// 添加一个按钮来手动打开表单 (可选)
+// Einen Button hinzufügen, um das Formular manuell zu öffnen (optional)
 const openAddItemForm = () => {
-  // 清除可能存在的旧位置信息或设置默认值
+  // Mögliche alte Standortinformationen löschen oder Standardwerte festlegen
   if (itemFormRef.value) {
-    itemFormRef.value.setLocation(null); // 或者传递地图中心
+    itemFormRef.value.setLocation(null); // Oder die Kartenmitte übergeben
   }
   showForm.value = true;
 };
 
-// 添加关闭表单的方法
+// Methode zum Schließen des Formulars hinzufügen
 const closeForm = () => {
   showForm.value = false;
 };
@@ -72,7 +72,7 @@ const closeForm = () => {
       ref="mapViewRef"
       @map-click="handleMapClick"
     />
-    <button class="add-item-btn" @click="openAddItemForm">添加物品</button>
+    <button class="add-item-btn" @click="openAddItemForm">Gegenstand hinzufügen</button>
     <ItemForm 
       v-if="showForm"
       ref="itemFormRef"

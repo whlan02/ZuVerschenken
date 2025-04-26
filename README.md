@@ -1,50 +1,23 @@
-# Zu Verschenken 地图平台
+# Zu Verschenken Kartenplattform
 
-这是一个基于Vue和OpenLayers的地图应用，用于分享和查找"zu verschenken"（免费赠送）物品的位置信息。
+Dies ist eine auf Vue und OpenLayers basierende Kartenanwendung, um die Standortinformationen von "zu verschenken" (kostenlos geschenkt) Gegenständen zu teilen und zu finden.
 
-## 项目背景
+## Projekt Hintergrund
 
-在德国，"zu verschenken"是一种常见的做法，人们会将不再需要的物品放在街道上，并标上"zu Verschenken"（免费赠送）的牌子。虽然有些人会在Facebook或eBay Kleinanzeige等社交媒体上发布信息，但传统的"zu Verschenken"很少在社交媒体上公布。
+In Deutschland ist "zu verschenken" eine gängige Praxis, bei der Menschen nicht mehr benötigte Gegenstände auf die Straße stellen und mit einem Schild "zu Verschenken" kennzeichnen. Obwohl einige Menschen Informationen auf sozialen Medien wie Facebook oder eBay Kleinanzeigen veröffentlichen, werden traditionelle "zu Verschenken" Angebote selten in sozialen Medien bekannt gegeben.
 
-通过这个网站，人们可以：
-- 发布免费物品的位置信息，无需与人见面
-- 查找附近的免费物品
-- 如果看到街边的"zu Verschenken"箱子，即使不是物主，也可以在网站上发布信息
+Durch diese Website können Menschen:
+- Standortinformationen von kostenlosen Gegenständen veröffentlichen, ohne sich mit jemandem treffen zu müssen
+- Kostenlose Gegenstände in der Nähe finden
+- Wenn sie einen "zu Verschenken" Kasten am Straßenrand sehen, können sie auch Informationen auf der Website veröffentlichen, selbst wenn sie nicht der Eigentümer sind
 
-## 功能
+## Funktionen
 
-- 显示OpenStreetMap地图
-- （即将推出）添加免费物品的位置标记
-- （即将推出）查看物品详情
-- （即将推出）发布新的免费物品信息
+- Anzeige der OpenStreetMap-Karte
+- (Bald verfügbar) Hinzufügen von Standortmarkierungen für kostenlose Gegenstände
+- (Bald verfügbar) Anzeigen von Gegenstanddetails
+- (Bald verfügbar) Veröffentlichen neuer Informationen zu kostenlosen Gegenständen
 
-## 如何使用
+## Verwendung
 
-### 安装依赖
-```bash
-npm install
-```
-
-### 开发环境启动
-```bash
-npm run dev
-```
-
-### 生产环境构建
-```bash
-npm run build
-```
-
-## 技术栈
-
-- Vue.js - 前端框架
-- OpenLayers - 地图库
-- OpenStreetMap - 底图数据源
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Abhängigkeiten installieren
