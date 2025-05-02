@@ -1,4 +1,4 @@
-# Zu Verschenken Kartenplattform
+# Zu Verschenken Kartenplattform ( noch im Gange)
 
 Dies ist eine auf Vue und OpenLayers basierende Kartenanwendung, um die Standortinformationen von "zu verschenken" (kostenlos geschenkt) Gegenständen zu teilen und zu finden.
 
